@@ -1,4 +1,4 @@
 module Gosui
 end
 
-require "mouse"
+require  File.dirname(__FILE__) + '/mouse'
