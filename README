@@ -1,1 +1,4 @@
 Gosui is a UI library for the Gosu Game Library
+
+Requirements
+  - Gosu (sudo gem install gosu)
