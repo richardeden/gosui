@@ -7,7 +7,7 @@ module Gosui
 		end
 	
 		def draw
-			@pointer.draw(@window.mouse_x,@window.mouse_y,0)
+			@pointer.draw(@window.mouse_x,@window.mouse_y,1)
 		end
 	end
 end
