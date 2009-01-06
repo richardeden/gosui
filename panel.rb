@@ -9,7 +9,7 @@ module Gosui
     end
     
     def draw
-       @window.draw_quad(@loc_x-50, @loc_y-50, 0xff800000, @loc_x+50, @loc_y-50, 0xff800000, @loc_x-50, @loc_y+50, 0xff800000, @loc_x+50, @loc_y+50, 0xff800000, 0)
+       @window.draw_quad(@loc_x-50, @loc_y-50, 0xff800000, @loc_x+50, @loc_y-50, 0xff800000, @loc_x-50, @loc_y+50, 0xff800000, @loc_x+50, @loc_y+50, 0xff800000, Gosui::ZOrder::Panel)
     end
   end
 end

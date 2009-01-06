@@ -7,7 +7,7 @@ module Gosui
 		end
 	
 		def draw
-			@pointer.draw(@window.mouse_x,@window.mouse_y,1)
+			@pointer.draw(@window.mouse_x, @window.mouse_y, Gosui::ZOrder::Mouse)
 		end
 	end
 end
