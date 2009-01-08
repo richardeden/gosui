@@ -30,7 +30,11 @@ module Gosui
     def draw
       @dialog_title_box.draw(@loc_x, @loc_y, Gosui::ZOrder::Dialog)
       @dialog_box.draw(@loc_x, @loc_y+25, Gosui::ZOrder::Dialog)
-      @font.draw("#{@text}",@loc_x + 100, @loc_y + 10, Gosui::ZOrder::Dialog, 1.0, 1.0, 0xffffffff)
+      @font.draw("#{@text}",@loc_x - calculate_text_location, @loc_y + 10, Gosui::ZOrder::Dialog, 1.0, 1.0, 0xffffffff)
+    end
+    
+    def calculate_text_location
+      (@font.text_width(@text, 1) - @size_y) / 2
     end
   end
 end
