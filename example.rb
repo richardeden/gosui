@@ -3,10 +3,13 @@ require 'gosu'
 require 'RMagick'
 require 'gosui'
 
-class ExampleWindow < Gosu::Window
+class ExampleWindow < Gosu::Window #possibly create a Gosui window which has a gosui event handler
+  attr_accessor :event_handler
+  
   def initialize
     super(800, 600, false)
     self.caption = 'Gosui Example'
+    @event_handler = Gosui::EventHandler::Dispatcher.new
     @cursor = Gosui::Mouse_Pointer.new(self)
     @panel = Gosui::Panel.new(self,100,100,200,200)
     @dialog = Gosui::Dialog.new(self, 300, 300, 400, 50, "This is a dialog")
@@ -17,6 +20,15 @@ class ExampleWindow < Gosu::Window
     @panel.draw
     @dialog.draw
   end
+  
+  def button_down(id)
+      if id == Gosu::Button::KbEscape
+        close
+      end
+      if id == Gosu::Button::MsLeft
+        @event_handler.observer_notifier(id)
+      end
+    end
 end
 
 ExampleWindow.new.show

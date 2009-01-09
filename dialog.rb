@@ -9,7 +9,8 @@ module Gosui
       @loc_x = loc_x
       @loc_y = loc_y
       @text = text
-      
+
+      window.event_handler.register_component(self,  Gosu::Button::MsLeft)
       setup_image(window, size_x, size_y)
       
       @font = Gosu::Font.new(@window, Gosu::default_font_name, 12)
@@ -31,6 +32,12 @@ module Gosui
       @dialog_title_box.draw(@loc_x, @loc_y, Gosui::ZOrder::Dialog)
       @dialog_box.draw(@loc_x, @loc_y+25, Gosui::ZOrder::Dialog)
       @font.draw("#{@text}",@loc_x - calculate_text_location, @loc_y + 10, Gosui::ZOrder::Dialog, 1.0, 1.0, 0xffffffff)
+    end
+    
+    def input_event(event_type)
+      if event_type == Gosu::Button::MsLeft
+        puts "received left mouse click"
+      end
     end
     
     def calculate_text_location
