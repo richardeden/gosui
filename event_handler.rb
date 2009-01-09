@@ -35,10 +35,7 @@ module Gosui
       def event_handler(event_type)
         @ui_component.input_event(event_type)
       end
-      
-      def update
-      end
-      
+
     end
     
   end
