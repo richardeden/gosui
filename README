@@ -1,4 +1,10 @@
 Gosui is a UI library for the Gosu Game Library
 
+Currently Supports
+  - Mouse
+  - Dialog Boxes
+  - Event Handler
+
 Requirements
   - Gosu (sudo gem install gosu)
+  - RMagick
