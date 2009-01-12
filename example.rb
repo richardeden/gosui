@@ -9,8 +9,8 @@ class ExampleWindow < Gosu::Window #possibly create a Gosui window which has a g
   def initialize
     super(800, 600, false)
     self.caption = 'Gosui Example'
-    @event_handler = Gosui::EventHandler::Dispatcher.new
     @cursor = Gosui::Mouse_Pointer.new(self)
+    @event_handler = Gosui::EventHandler::Dispatcher.new(self, @cursor)
     @dialog = Gosui::Dialog.new(self, 300, 300, 200, 50, "This is a dialog")
   end
   

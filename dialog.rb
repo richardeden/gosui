@@ -1,7 +1,7 @@
 module Gosui
   class Dialog
     
-    attr_accessor :dialog_title_box, :dialog_box
+    attr_accessor :dialog_title_box, :dialog_box, :size_x, :size_y, :loc_x, :loc_y
     def initialize(window, size_x, size_y, loc_x, loc_y, text)
       @window = window
       @size_x = size_x
@@ -35,13 +35,7 @@ module Gosui
     end
     
     def input_event(event_type)
-	  if (@loc_x..@loc_x + @size_y) === @window.mouse_x && (@loc_y..@loc_y + @size_x) === @window.mouse_y
-        if event_type == Gosu::Button::MsLeft
-		  until event_type == 1
-			puts "updating"
-		  end
-        end
-	  end
+      
     end
     
     def calculate_text_location
