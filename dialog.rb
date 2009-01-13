@@ -1,7 +1,7 @@
 module Gosui
   class Dialog
     
-    attr_accessor :dialog_title_box, :dialog_box, :size_x, :size_y, :loc_x, :loc_y
+    attr_accessor :dialog_title_box, :dialog_box, :size_x, :size_y, :loc_x, :loc_y, :clicked
     def initialize(window, size_x, size_y, loc_x, loc_y, text)
       @window = window
       @size_x = size_x
@@ -9,8 +9,9 @@ module Gosui
       @loc_x = loc_x
       @loc_y = loc_y
       @text = text
-
+      @clicked = false
       window.event_handler.register_component(self,  Gosu::Button::MsLeft)
+      window.event_handler.register_component(self,  0)
       setup_image(window, size_x, size_y)
       
       @font = Gosu::Font.new(@window, Gosu::default_font_name, 12)
@@ -29,13 +30,25 @@ module Gosui
     end
     
     def draw
-      @dialog_title_box.draw(@loc_x, @loc_y, Gosui::ZOrder::Dialog)
-      @dialog_box.draw(@loc_x, @loc_y+25, Gosui::ZOrder::Dialog)
-      @font.draw("#{@text}",@loc_x - calculate_text_location, @loc_y + 10, Gosui::ZOrder::Dialog, 1.0, 1.0, 0xffffffff)
+      if clicked == true
+        @loc_x += @window.mouse_x - @loc_x
+        @loc_y += @window.mouse_y - @loc_y
+        @dialog_title_box.draw(@loc_x, @loc_y, Gosui::ZOrder::Dialog)
+        @dialog_box.draw(@loc_x, @loc_y + 25, Gosui::ZOrder::Dialog)
+        @font.draw("#{@text}",@loc_x - calculate_text_location, @loc_y + 10, Gosui::ZOrder::Dialog, 1.0, 1.0, 0xffffffff)
+      else  
+        @dialog_title_box.draw(@loc_x, @loc_y, Gosui::ZOrder::Dialog)
+        @dialog_box.draw(@loc_x, @loc_y+25, Gosui::ZOrder::Dialog)
+        @font.draw("#{@text}",@loc_x - calculate_text_location, @loc_y + 10, Gosui::ZOrder::Dialog, 1.0, 1.0, 0xffffffff)
+      end
     end
     
     def input_event(event_type)
-      
+      if event_type == Gosu::Button::MsLeft
+        @clicked = true
+      elsif event_type == 0
+        @clicked = false
+      end
     end
     
     def calculate_text_location

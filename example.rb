@@ -19,14 +19,23 @@ class ExampleWindow < Gosu::Window #possibly create a Gosui window which has a g
     @dialog.draw
   end
   
-  def button_down(id)
-      if id == Gosu::Button::KbEscape
-        close
-      end
-      if id == Gosu::Button::MsLeft
-        @event_handler.observer_notifier(id)
-      end
+  def update
+    if button_down? Gosu::Button::MsLeft
+      @event_handler.observer_notifier(Gosu::Button::MsLeft)
     end
+  end
+  
+  def button_down(id)
+    if id == Gosu::Button::KbEscape
+      close
+    end
+  end
+  
+  def button_up(id)
+    if id == Gosu::Button::MsLeft
+      @event_handler.observer_notifier(0)
+    end
+  end
 end
 
 ExampleWindow.new.show

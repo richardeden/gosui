@@ -21,6 +21,9 @@ module Gosui
         @observers.each do |observer|
           if observer.event == event_type && observer.within_bounds?(@mouse.get_x, @mouse.get_y)
             observer.event_handler(event_type)
+          #check for a button_up and call relevant components
+          elsif event_type == 0 && observer.event == event_type
+            observer.event_handler(event_type)
           end
         end
       end
