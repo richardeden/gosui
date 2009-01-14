@@ -1,7 +1,7 @@
 module Gosui
   class Dialog
     
-    attr_accessor :dialog_title_box, :dialog_box, :size_x, :size_y, :loc_x, :loc_y, :clicked
+    attr_accessor :dialog_title_box, :dialog_box, :size_x, :size_y, :loc_x, :loc_y, :clicked, :mouse_x, :mouse_y
     def initialize(window, size_x, size_y, loc_x, loc_y, text)
       @window = window
       @size_x = size_x
@@ -31,8 +31,8 @@ module Gosui
     
     def draw
       if clicked == true
-        @loc_x += @window.mouse_x - @loc_x
-        @loc_y += @window.mouse_y - @loc_y
+        @loc_x = (@window.mouse_x - @drag_offset_x)
+        @loc_y = (@window.mouse_y - @drag_offset_y)
         @dialog_title_box.draw(@loc_x, @loc_y, Gosui::ZOrder::Dialog)
         @dialog_box.draw(@loc_x, @loc_y + 25, Gosui::ZOrder::Dialog)
         @font.draw("#{@text}",@loc_x - calculate_text_location, @loc_y + 10, Gosui::ZOrder::Dialog, 1.0, 1.0, 0xffffffff)
@@ -45,6 +45,10 @@ module Gosui
     
     def input_event(event_type)
       if event_type == Gosu::Button::MsLeft
+        if !@clicked
+          @drag_offset_x = @window.mouse_x - @loc_x
+          @drag_offset_y = @window.mouse_y - @loc_y
+        end
         @clicked = true
       elsif event_type == 0
         @clicked = false
