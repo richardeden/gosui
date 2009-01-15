@@ -1,5 +1,5 @@
 module Gosui
   module ZOrder
-    Panel, Dialog, Mouse = *0..3
+    Panel, Dialog, Button, Mouse = *0..3
   end
 end
