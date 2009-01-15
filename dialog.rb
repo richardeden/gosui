@@ -55,6 +55,9 @@ module Gosui
       end
     end
     
+    def add_component(ui_component, loc_x, loc_y)
+    end
+    
     def calculate_text_location
       (@font.text_width(@text, 1) - @size_y) / 2
     end

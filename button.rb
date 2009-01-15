@@ -8,6 +8,7 @@ module Gosui
       @loc_y = loc_y
       @text = text
       @button = setup_image(window, size_x, size_y)
+      @font = Gosu::Font.new(@window, Gosu::default_font_name, 12)
     end
     
     def setup_image(window, size_x, size_y)      
@@ -17,12 +18,20 @@ module Gosui
     end
     
     def draw
-      @button.draw(@loc_x, @loc_y+25, Gosui::ZOrder::Button)
-      @font.draw("#{@text}",@loc_x - calculate_text_location, @loc_y + 10, Gosui::ZOrder::Button, 1.0, 1.0, 0xffffffff)
+      @button.draw(@loc_x, @loc_y, Gosui::ZOrder::Button)
+      @font.draw("#{@text}",@loc_x - calculate_text_location, @loc_y, Gosui::ZOrder::Button, 1.0, 1.0, 0xffffffff)
     end
     
     def calculate_text_location
       (@font.text_width(@text, 1) - @size_y) / 2
+    end
+    
+    def input_event(event_type)
+      if event_type == Gosu::Button::MsLeft
+        @clicked = true
+      elsif event_type == 0
+        @clicked = false
+      end
     end
     
   end
