@@ -1,7 +1,7 @@
 module Gosui
   class Dialog
     
-    attr_accessor :dialog_title_box, :dialog_box, :size_x, :size_y, :loc_x, :loc_y, :clicked, :mouse_x, :mouse_y
+    attr_accessor :dialog_title_box, :dialog_box, :size_x, :size_y, :loc_x, :loc_y, :clicked, :mouse_x, :mouse_y, :components
     def initialize(window, size_x, size_y, loc_x, loc_y, text)
       @window = window
       @size_x = size_x
@@ -10,6 +10,7 @@ module Gosui
       @loc_y = loc_y
       @text = text
       @clicked = false
+      @components = []
       window.event_handler.register_component(self,  Gosu::Button::MsLeft)
       window.event_handler.register_component(self,  0)
       setup_image(window, size_x, size_y)
@@ -41,6 +42,9 @@ module Gosui
         @dialog_box.draw(@loc_x, @loc_y+25, Gosui::ZOrder::Dialog)
         @font.draw("#{@text}",@loc_x - calculate_text_location, @loc_y + 10, Gosui::ZOrder::Dialog, 1.0, 1.0, 0xffffffff)
       end
+      @components.each do |component|
+        component.draw
+      end
     end
     
     def input_event(event_type)
@@ -55,11 +59,14 @@ module Gosui
       end
     end
     
-    def add_component(ui_component, loc_x, loc_y)
+    def add_component(ui_component)
+      ui_component.loc_x = ui_component.loc_x + @loc_x
+      ui_component.loc_y = ui_component.loc_y + @loc_y
+      @components << ui_component
     end
     
     def calculate_text_location
-      (@font.text_width(@text, 1) - @size_y) / 2
+      (@font.text_width(@text, 1) - @size_x) / 2
     end
   end
 end

@@ -11,7 +11,9 @@ class ExampleWindow < Gosu::Window #possibly create a Gosui window which has a g
     self.caption = 'Gosui Example'
     @cursor = Gosui::Mouse_Pointer.new(self)
     @event_handler = Gosui::EventHandler::Dispatcher.new(self, @cursor)
-    @dialog = Gosui::Dialog.new(self, 300, 300, 200, 50, "This is a dialog")
+    @dialog = Gosui::Dialog.new(self, 300, 100, 200, 50, "This is a dialog")
+    # @button = Gosui::Button.new(self, 100, 30, 170, 280, "Test Button")
+    #     @dialog.add_component(@button)
   end
   
   def draw

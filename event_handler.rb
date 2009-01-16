@@ -43,7 +43,7 @@ module Gosui
       end
         
       def within_bounds?(mouse_x, mouse_y)
-        if (@ui_component.loc_x..@ui_component.loc_x + @ui_component.size_y) === mouse_x.to_i && (@ui_component.loc_y..@ui_component.loc_y + @ui_component.size_x) === mouse_y.to_i
+        if (@ui_component.loc_x..@ui_component.loc_x + @ui_component.size_x) === mouse_x.to_i && (@ui_component.loc_y..@ui_component.loc_y + @ui_component.size_y) === mouse_y.to_i
           return true
   	    end
   	    false

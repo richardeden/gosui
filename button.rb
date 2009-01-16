@@ -1,5 +1,6 @@
 module Gosui
   class Button
+    attr_accessor :loc_x, :loc_y
     def initialize(window, size_x, size_y, loc_x, loc_y, text)
       @window = window
       @size_x = size_x
