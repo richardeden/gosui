@@ -20,11 +20,11 @@ module Gosui
     
     def draw
       @button.draw(@loc_x, @loc_y, Gosui::ZOrder::Button)
-      @font.draw("#{@text}",@loc_x - calculate_text_location, @loc_y, Gosui::ZOrder::Button, 1.0, 1.0, 0xffffffff)
+      @font.draw("#{@text}",@loc_x - calculate_text_location, @loc_y + 5, Gosui::ZOrder::Button, 1.0, 1.0, 0xffffffff)
     end
     
     def calculate_text_location
-      (@font.text_width(@text, 1) - @size_y) / 2
+      (@font.text_width(@text, 1) - @size_x) / 2
     end
     
     def input_event(event_type)
