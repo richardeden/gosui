@@ -11,11 +11,11 @@ Requirements
   
 
 :: Next Milestone 0.1 ::
-I plan to have the following functionality for the 0.1 release.
+I plan to have the following functionality for the 0.1 release. The status reflects the progress for the 0.1 release. If you see 'Done' it means that it has the functionality originally planned for the next milestone.
 
 - Mouse (Done)
 - Dialog Box (In progress)
-- Event Handler (In progress)
+- Event Handler (Done)
 - Button (In progress)
 - Checkbox
 - Text Input
