@@ -4,6 +4,7 @@ Currently Supports
   - Mouse
   - Dialog Boxes
   - Event Handler
+  - Buttons
 
 Requirements
   - Gosu (sudo gem install gosu)
