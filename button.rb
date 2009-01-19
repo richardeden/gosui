@@ -1,6 +1,6 @@
 module Gosui
   class Button
-    attr_accessor :loc_x, :loc_y
+    attr_accessor :loc_x, :loc_y, :size_x, :size_y
     def initialize(window, size_x, size_y, loc_x, loc_y, text)
       @window = window
       @size_x = size_x
@@ -36,9 +36,6 @@ module Gosui
       elsif event_type == 0
         @clicked = false
       end
-    end
-    
-    def event
     end
     
   end
