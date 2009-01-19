@@ -40,4 +40,5 @@ class ExampleWindow < Gosu::Window #possibly create a Gosui window which has a g
   end
 end
 
+
 ExampleWindow.new.show

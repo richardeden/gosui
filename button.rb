@@ -10,6 +10,8 @@ module Gosui
       @text = text
       @button = setup_image(window, size_x, size_y)
       @font = Gosu::Font.new(@window, Gosu::default_font_name, 12)
+      window.event_handler.register_component(self,  Gosu::Button::MsLeft)
+      window.event_handler.register_component(self,  0)
     end
     
     def setup_image(window, size_x, size_y)      
@@ -30,9 +32,13 @@ module Gosui
     def input_event(event_type)
       if event_type == Gosu::Button::MsLeft
         @clicked = true
+        event
       elsif event_type == 0
         @clicked = false
       end
+    end
+    
+    def event
     end
     
   end
