@@ -1,9 +1,11 @@
-Gosui is a UI library for the Gosu Game Library (current version 0.0.1)
+Gosui is a UI library for the Gosu Game Library (current version 0.0.4)
 
 Currently Supports
   - Mouse
   - Dialog Boxes
   - Event Handler
+  - Buttons
+  - Checkbox
 
 Requirements
   - Gosu (sudo gem install gosu)
@@ -11,13 +13,13 @@ Requirements
   
 
 :: Next Milestone 0.1 ::
-I plan to have the following functionality for the 0.1 release.
+I plan to have the following functionality for the 0.1 release. The status reflects the progress for the 0.1 release. If you see 'Done' it means that it has the functionality originally planned for the next milestone.
 
 - Mouse (Done)
 - Dialog Box (In progress)
-- Event Handler (In progress)
-- Button (In progress)
-- Checkbox
+- Event Handler (Done)
+- Button (Done)
+- Checkbox (Done)
 - Text Input
 - Text Area
 - Vertical scroll bar

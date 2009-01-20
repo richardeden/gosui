@@ -2,6 +2,7 @@ module Gosui
   class Dialog
     
     attr_accessor :dialog_title_box, :dialog_box, :size_x, :size_y, :loc_x, :loc_y, :clicked, :mouse_x, :mouse_y, :components
+    attr_accessor :component_offset_x, :component_offset_y, :new_x, :new_y
 
     def initialize(window, size_x, size_y, loc_x, loc_y, text)
       @window = window
@@ -9,6 +10,8 @@ module Gosui
       @size_y = size_y
       @loc_x = loc_x
       @loc_y = loc_y
+      @new_x = @loc_x
+      @new_y = @loc_y
       @text = text
       @clicked = false
       @components = []
@@ -38,6 +41,16 @@ module Gosui
         @dialog_title_box.draw(@loc_x, @loc_y, Gosui::ZOrder::Dialog)
         @dialog_box.draw(@loc_x, @loc_y + 25, Gosui::ZOrder::Dialog)
         @font.draw("#{@text}",@loc_x - calculate_text_location, @loc_y + 10, Gosui::ZOrder::Dialog, 1.0, 1.0, 0xffffffff)
+        @components.each do |component|
+          if @new_x != @loc_x || @new_y != @loc_y
+            x = @new_x - @loc_x
+            y = @new_y - @loc_y
+            update_component_location(component,x,y)
+          end 
+          component.draw
+        end
+        @new_x = @loc_x
+        @new_y = @loc_y
       else  
         @dialog_title_box.draw(@loc_x, @loc_y, Gosui::ZOrder::Dialog)
         @dialog_box.draw(@loc_x, @loc_y+25, Gosui::ZOrder::Dialog)
@@ -67,8 +80,9 @@ module Gosui
       @components << ui_component
     end
     
-    def update_component_location(ui_component)
-      
+    def update_component_location(ui_component,x,y)
+      ui_component.loc_x = ui_component.loc_x - x
+      ui_component.loc_y = ui_component.loc_y - y
     end
     
     def calculate_text_location
