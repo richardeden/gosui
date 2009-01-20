@@ -17,7 +17,7 @@ module Gosui
     def setup_image(window, size_x, size_y)      
       button_img = File.expand_path(File.dirname(__FILE__) + '/media/button.png')
       m_button_img = Magick::Image.read(button_img).first
-      @dialog_box = Gosu::Image.new(window, m_button_img.scale!(size_x, size_y), true)
+      @button = Gosu::Image.new(window, m_button_img.scale!(size_x, size_y), true)
     end
     
     def draw

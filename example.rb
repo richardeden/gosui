@@ -21,7 +21,9 @@ class ExampleWindow < Gosu::Window #possibly create a Gosui window which has a g
     @event_handler = Gosui::EventHandler::Dispatcher.new(self, @cursor)
     @dialog = Gosui::Dialog.new(self, 300, 100, 200, 50, "This is a dialog")
     @button = MyButton.new(self, 100, 30, 100, 50, "Test Button")
+    @checkbox = Gosui::Checkbox.new(self,20,20,250,90,"Checkbox")
     @dialog.add_component(@button)
+    @dialog.add_component(@checkbox)
   end
   
   def draw
