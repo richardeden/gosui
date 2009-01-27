@@ -1,5 +1,5 @@
 module Gosui
   module ZOrder
-    Panel, Dialog, Button, Checkbox, Mouse = *0..4
+    Panel, Dialog, Button, TextInput, Checkbox, Mouse = *0..5
   end
 end
